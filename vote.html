@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vote</title>
+    <script src="index.js"></script>
+
+
+
+    <!-- CSS -->
+
+    <style>
+        /* Button left */
+
+        #btn_click {
+            box-shadow: 3px 4px 0px 0px #1564ad;
+            background-color: #79bbff;
+            border-radius: 5px;
+            border: 1px solid #337bc4;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 12px 44px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #528ecc;
+        }
+
+        #btn_click:hover {
+            background-color: #378de5;
+        }
+
+        #btn_click:active {
+            position: relative;
+            top: 1px;
+        }
+
+        /* Button middle */
+
+        #btn_click2 {
+            box-shadow: 3px 4px 0px 0px #590707;
+            background-color: #ffa47a;
+            border-radius: 5px;
+            border: 1px solid #c26134;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 12px 44px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #cc7a54;
+        }
+
+        #btn_click2:hover {
+            background-color: #e36139;
+        }
+
+        #btn_click2:active {
+            position: relative;
+            top: 1px;
+        }
+
+        /* Button right */
+
+        #btn_click3 {
+            box-shadow: 3px 4px 0px 0px #3e7327;
+            background-color: #77b55a;
+            border-radius: 5px;
+            border: 1px solid #4b8f29;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 12px 44px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #2a421a;
+        }
+
+        #btn_click3:hover {
+            background-color: #51992e;
+        }
+
+        #btn_click3:active {
+            position: relative;
+            top: 1px;
+        }
+
+        /* Buttons */
+
+        #buttons {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HTML -->
+
+    <div id="buttons">
+
+        <div class="col-md-4 ">
+            <p style="text-align: center"><button id='btn_click' class="bnt btn-lg btn-success">Pain au chocolat</button></p>
+
+            <p style="text-align: center">Nb votes: <span id="counter"></span></p>
+        </div>
+
+        <div class="col-md-4 ">
+            <p style="text-align: center"><button id='btn_click2' class="bnt btn-lg btn-success">Chocolatine</button></p>
+
+            <p style="text-align: center">Nb votes: <span id="counter2"></span></p>
+        </div>
+
+        <div class="col-md-4 ">
+            <p style="text-align: center"><button id='btn_click3' class="bnt btn-lg btn-success">Pain à la chocolatine</button></p>
+
+            <p style="text-align: center">Nb votes: <span id="counter3"></span></p>
+        </div>
+
+
+    </div>
+
+    <!-- Scripts Socket Io -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        // Gestion des votes pour le premier bouton
+
+        $(function () {
+
+            var socket = io();//connect to the socket
+
+
+            //Listen from server.js
+            socket.on('click_count', function (value) {
+                $('#counter').html(value);//Set new count value
+            });
+
+            //Says to server that the button has been clicked
+            $('#btn_click').click(function () {
+                socket.emit('clicked');//Emitting user click
+            });
+
+        });
+
+        // Gestion des votes pour le deuxième bouton
+
+        $(function () {
+
+            var socket = io();//connect to the socket
+
+            socket.on('click_count2', function (value2) {
+                $('#counter2').html(value2);//Set new count value
+            });
+
+            //Says to server that the button has been clicked
+            $('#btn_click2').click(function () {
+                socket.emit('clicked2');//Emitting user click
+            });
+
+        });
+
+        // Gestion des votes pour le troisième bouton
+
+        $(function () {
+
+            var socket = io();//connect to the socket
+
+            socket.on('click_count3', function (value3) {
+                $('#counter3').html(value3);//Set new count value
+            });
+
+            //Says to server that the button has been clicked
+            $('#btn_click3').click(function () {
+                socket.emit('clicked3');//Emitting user click
+            });
+
+        });
+
+
+        // Désactiver les boutons après le vote
+
+        document.getElementById("btn_click").addEventListener("click", function () {
+            // Preventing button from clicking
+            document.getElementById("btn_click").disabled = true;
+            document.getElementById("btn_click2").disabled = true;
+            document.getElementById("btn_click3").disabled = true;
+        });
+
+        document.getElementById("btn_click2").addEventListener("click", function () {
+            // Preventing button from clicking
+            document.getElementById("btn_click").disabled = true;
+            document.getElementById("btn_click2").disabled = true;
+            document.getElementById("btn_click3").disabled = true;
+        });
+
+        document.getElementById("btn_click3").addEventListener("click", function () {
+            // Preventing button from clicking
+            document.getElementById("btn_click").disabled = true;
+            document.getElementById("btn_click2").disabled = true;
+            document.getElementById("btn_click3").disabled = true;
+        });
+
+
+        var button = document.querySelector('#btn_click');
+        var button2 = document.querySelector('#btn_click2');
+        var button3 = document.querySelector('#btn_click3');
+
+        button.onclick = function () {
+
+            btn_click2.style.backgroundColor = "grey";
+            btn_click3.style.backgroundColor = "grey";
+
+        };
+
+        button2.onclick = function () {
+
+            btn_click.style.backgroundColor = "grey";
+            btn_click3.style.backgroundColor = "grey";
+
+        };
+
+        button3.onclick = function () {
+
+            btn_click.style.backgroundColor = "grey";
+            btn_click2.style.backgroundColor = "grey";
+
+        };
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+/* Button left */
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #1564ad;
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.myButton:hover {
+	background-color:#378de5;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+/* Button middle */
+
+.myButton2 {
+	box-shadow: 3px 4px 0px 0px #590707;
+	background-color:#ffa47a;
+	border-radius:5px;
+	border:1px solid #c26134;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc7a54;
+}
+.myButton2:hover {
+	background-color:#e36139;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
+
+/* Button right */
+
+.myButton3 {
+	box-shadow: 3px 4px 0px 0px #3e7327;
+	background-color:#77b55a;
+	border-radius:5px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2a421a;
+}
+.myButton3:hover {
+	background-color:#51992e;
+}
+.myButton3:active {
+	position:relative;
+	top:1px;
+}
+
+/* Buttons */
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
